@@ -12,9 +12,10 @@ buttons.forEach((btn) => {
 
 window.addEventListener('keydown', (event) => {
     let key = event.key.toLowerCase();
-
-    if (event.key === '/') {
+    if (key === '/') {
         event.preventDefault();
+    } else if (key === 'enter' && a === undefined) {
+        return;
     } else if (key === 'escape') {
         key = 'c';
     }
@@ -26,7 +27,6 @@ window.addEventListener('keydown', (event) => {
             function onKeyup() {
                 document.removeEventListener('keyup', onKeyup);
                 // Default background color
-
                 if (input.classList.contains('equals')) {
                     input.classList.remove('equals-selected');
                 } else {
@@ -35,7 +35,6 @@ window.addEventListener('keydown', (event) => {
             },
             false
         );
-
         // Background color on key press
         if (input.classList.contains('equals')) {
             input.classList.add('equals-selected');
@@ -76,6 +75,10 @@ function updateDisplay(input) {
         if (b === undefined || !operandSwitch) {
             b = parseInt(display.innerText);
         }
+        if (b === 0) {
+            window.alert("We don't do that here");
+            return;
+        }
         result = operate(operator, a, b);
         display.innerText = result;
         a = result;
@@ -91,14 +94,13 @@ function updateDisplay(input) {
             // operation = [];
             operator = a = b = operandSwitch = undefined;
             display.innerText = '';
-            operandSwitch = false;
         }
         // Clear the display when typing the second operand
         // or just starting a new operation
         else if (operandSwitch || display.innerText === '0') {
             display.innerText = '';
-            operandSwitch = false;
         }
+        operandSwitch = false;
         display.innerText += input.id;
     }
 }
