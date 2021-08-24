@@ -31,6 +31,8 @@ window.addEventListener('keydown', (event) => {
                 // Default background color
                 if (input.classList.contains('equals')) {
                     input.classList.remove('equals-selected');
+                } else if (input.classList.contains('function')) {
+                    input.classList.remove('function-selected');
                 } else {
                     input.classList.remove('btn-selected');
                 }
@@ -40,6 +42,8 @@ window.addEventListener('keydown', (event) => {
         // Background color on key press
         if (input.classList.contains('equals')) {
             input.classList.add('equals-selected');
+        } else if (input.classList.contains('function')) {
+            input.classList.add('function-selected');
         } else {
             input.classList.add('btn-selected');
         }

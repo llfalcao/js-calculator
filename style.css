@@ -88,11 +88,17 @@ body {
 }
 
 .function {
-    background-color: #141414;
+    background-color: #14666aa3;
 }
 
 .function:hover {
+    background-color: #1b858a;
     border: 1px solid #252525;
+}
+
+.function:active,
+.function-selected {
+    background-color: #1f959b;
 }
 
 .btn-selected {
