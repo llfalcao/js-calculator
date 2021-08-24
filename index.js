@@ -105,11 +105,12 @@ function updateDisplay(input) {
         }
         // Clear the display when typing the second operand
         // or just starting a new operation
-        else if (
-            operandSwitch ||
-            (display.innerText === '0' && currentInput !== 'point')
-        ) {
-            display.innerText = '';
+        else if (operandSwitch || display.innerText === '0') {
+            if (currentInput === 'point') {
+                display.innerText = '0';
+            } else {
+                display.innerText = '';
+            }
         }
 
         if (currentInput === 'point') {
