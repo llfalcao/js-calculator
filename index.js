@@ -60,7 +60,7 @@ function updateDisplay(input) {
         // Chain operations with the operator acting as an 'equals' button
         else if (a !== undefined) {
             b = parseInt(display.innerText);
-            result = operate(operator, a, b);
+            result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
             display.innerText = result;
             a = result;
             b = undefined;
@@ -79,19 +79,18 @@ function updateDisplay(input) {
             window.alert("We don't do that here");
             return;
         }
-        result = operate(operator, a, b);
+        result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
+
         display.innerText = result;
         a = result;
         operandSwitch = true;
     } else if (input.classList.contains('clear')) {
         display.innerText = '0';
-        // operation = [];
         operator = a = b = operandSwitch = undefined;
     } else {
         // Clear the display and start a new operation
         // if the last button pressed was 'equals'
         if (b !== undefined) {
-            // operation = [];
             operator = a = b = operandSwitch = undefined;
             display.innerText = '';
         }
