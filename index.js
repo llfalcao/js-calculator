@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll('.btn');
-let operator, a, b, operandSwitch;
+let operator, a, b, operandSwitch, decimalPoint;
 // a: 1st operand;
 // b: 2nd operand;
 // operandSwitch: defines when to clear the display for a new number
@@ -16,6 +16,8 @@ window.addEventListener('keydown', (event) => {
         event.preventDefault();
     } else if (key === 'enter' && a === undefined) {
         return;
+    } else if (key === ',') {
+        key = '.';
     } else if (key === 'escape') {
         key = 'c';
     }
@@ -59,7 +61,7 @@ function updateDisplay(input) {
         }
         // Chain operations with the operator acting as an 'equals' button
         else if (a !== undefined) {
-            b = parseInt(display.innerText);
+            b = parseFloat(display.innerText);
             result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
             display.innerText = result;
             a = result;
@@ -67,13 +69,14 @@ function updateDisplay(input) {
         }
         // Simple operation with only two operands
         else {
-            a = parseInt(display.innerText);
+            a = parseFloat(display.innerText);
         }
         operator = input.id;
         operandSwitch = true;
+        decimalPoint = false;
     } else if (input.classList.contains('equals')) {
         if (b === undefined || !operandSwitch) {
-            b = parseInt(display.innerText);
+            b = parseFloat(display.innerText);
         }
         if (b === 0) {
             window.alert("We don't do that here");
@@ -86,21 +89,39 @@ function updateDisplay(input) {
         operandSwitch = true;
     } else if (input.classList.contains('clear')) {
         display.innerText = '0';
-        operator = a = b = operandSwitch = undefined;
+        operator = a = b = operandSwitch = decimalPoint = undefined;
     } else {
+        let currentInput = input.id;
+
         // Clear the display and start a new operation
         // if the last button pressed was 'equals'
         if (b !== undefined) {
-            operator = a = b = operandSwitch = undefined;
-            display.innerText = '';
+            operator = a = b = operandSwitch = decimalPoint = undefined;
+            if (currentInput === 'point') {
+                display.innerText = '0';
+            } else {
+                display.innerText = '';
+            }
         }
         // Clear the display when typing the second operand
         // or just starting a new operation
-        else if (operandSwitch || display.innerText === '0') {
+        else if (
+            operandSwitch ||
+            (display.innerText === '0' && currentInput !== 'point')
+        ) {
             display.innerText = '';
         }
+
+        if (currentInput === 'point') {
+            if (decimalPoint) {
+                return;
+            } else {
+                currentInput = '.';
+                decimalPoint = true;
+            }
+        }
         operandSwitch = false;
-        display.innerText += input.id;
+        display.innerText += currentInput;
     }
 }
 
