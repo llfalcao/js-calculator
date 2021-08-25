@@ -66,6 +66,12 @@ function updateDisplay(input) {
         // Chain operations with the operator acting as an 'equals' button
         else if (a !== undefined) {
             b = parseFloat(display.innerText);
+
+            if (operator === 'divide' && b === 0) {
+                window.alert("We don't do that here");
+                return;
+            }
+
             result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
             display.innerText = result;
             a = result;
@@ -81,11 +87,13 @@ function updateDisplay(input) {
     } else if (input.classList.contains('equals')) {
         if (b === undefined || !operandSwitch) {
             b = parseFloat(display.innerText);
+
+            if (operator === 'divide' && b === 0) {
+                window.alert("We don't do that here");
+                return;
+            }
         }
-        if (b === 0) {
-            window.alert("We don't do that here");
-            return;
-        }
+
         result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
 
         display.innerText = result;
