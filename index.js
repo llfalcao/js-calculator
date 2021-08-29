@@ -4,8 +4,10 @@ let operator, a, b, operandSwitch, decimalPoint;
 // b: 2nd operand;
 // operandSwitch: defines when to clear the display for a new number
 
+console.log(operator, a, b, operandSwitch);
 buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
+        console.log(btn);
         updateDisplay(btn);
     });
 });
@@ -14,8 +16,9 @@ window.addEventListener('keydown', (event) => {
     let key = event.key.toLowerCase();
     if (key === '/') {
         event.preventDefault();
-    } else if (key === 'enter' && a === undefined) {
-        return;
+    } else if (key === 'enter') {
+        event.preventDefault();
+        if (a === undefined) return;
     } else if (key === ',') {
         key = '.';
     } else if (key === 'escape') {
@@ -136,6 +139,7 @@ function updateDisplay(input) {
         operandSwitch = false;
         display.innerText += currentInput;
     }
+    console.log(operator, a, b, operandSwitch);
 }
 
 function operate(sign, x, y) {
