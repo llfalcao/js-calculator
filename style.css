@@ -13,12 +13,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('https://images.unsplash.com/photo-1618367588411-d9a90fefa881')
-        rgba(0, 0, 0, 0.1);
     background: linear-gradient(
         175deg,
         rgb(21, 21, 21) 75%,
-        rgb(85, 109, 140) 20%
+        rgb(85, 109, 140) calc(75% + 1px),
+        rgb(85, 109, 140)
     );
     background-position: center;
     background-size: cover;
