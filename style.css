@@ -36,14 +36,13 @@ body {
 }
 
 .display {
-    font-family: 'Segoe UI', monospace;
     background-color: #151515;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     min-height: 80px;
     padding: 0 10px;
-    font-family: monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 2.8rem;
     border: 1px solid rgb(44, 44, 44);
     overflow: hidden;
