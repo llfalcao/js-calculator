@@ -3,35 +3,50 @@
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #7092ad;
     color: #ffffff;
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(175deg,
-            rgb(21, 21, 21) 75%,
-            rgb(85, 109, 140) calc(75% + 1px),
-            rgb(85, 109, 140));
+    background: url(assets/background.jpg), rgba(47, 86, 98, 0.88);
     background-position: center;
     background-size: cover;
     background-blend-mode: overlay;
+    overflow-x: hidden;
+}
+
+/* Bottom bar */
+body:after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-width: 350px;
+    width: 50%;
+    height: 3rem;
+    bottom: 0;
+    z-index: -1;
+    box-shadow: 0 0 4px 0px rgb(3, 2, 2), 0 0 4px 2px black;
+    backdrop-filter: blur(8px);
 }
 
 .calculator {
     background-color: rgba(133, 133, 133, 0.5);
     border-radius: 0.25rem;
     width: 25%;
-    max-height: 85%;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     padding: 0.5rem 0.4rem;
     box-shadow: 0 0 4px black, 0 0 2px black, 0 0 4px rgb(29, 29, 29);
-    margin: auto 1rem;
+    margin: 1rem;
     overflow-y: hidden;
 }
 
@@ -49,6 +64,7 @@ body {
     transition: 0.5s;
 }
 
+/* Button grid */
 .btns {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -115,6 +131,55 @@ body {
     background-color: #646263;
 }
 
+/* Github */
+.info {
+    position: absolute;
+    bottom: 0.7rem;
+}
+
+.info a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.github-logo {
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.github-user {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.credits {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0.5;
+    width: 100px;
+}
+
+.credits a {
+    font-family: 'JetBrains Mono';
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+    .credits {
+        bottom: 3.5rem;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 320px) {
     .calculator {
         display: block;
@@ -138,5 +203,20 @@ body {
 @media (max-width: 1200px) {
     .calculator {
         width: 350px;
+    }
+}
+
+@media (max-height: 540px) {
+    body::after {
+        left: 0;
+        width: 350px;
+    }
+
+    .btn {
+        font-size: 5vh;
+    }
+
+    .info {
+        left: 6.5rem;
     }
 }
