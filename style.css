@@ -28,7 +28,7 @@ body:after {
     content: '';
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
-    min-width: 350px;
+    min-width: 320px;
     width: 50%;
     height: 3rem;
     bottom: 0;
@@ -41,13 +41,11 @@ body:after {
     background-color: rgba(133, 133, 133, 0.5);
     border-radius: 0.25rem;
     width: 25%;
-    max-height: 500px;
     display: flex;
     flex-direction: column;
     padding: 0.5rem 0.4rem;
     box-shadow: 0 0 4px black, 0 0 2px black, 0 0 4px rgb(29, 29, 29);
     margin: 1rem;
-    overflow-y: hidden;
 }
 
 .display {
@@ -73,6 +71,7 @@ body:after {
     background-color: transparent;
     aspect-ratio: 0.8;
     height: 60vh;
+    max-height: 450px;
 }
 
 .btn {
@@ -81,15 +80,15 @@ body:after {
     border: 1px solid rgb(44, 44, 44);
     border-radius: 0.25rem;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .btn:hover {
-    background-color: #4c4c4c;
+    background-color: #131313eb;
 }
 
 .btn:active {
-    background-color: #646263;
+    background-color: #313131eb;
 }
 
 .equals {
@@ -118,13 +117,13 @@ body:after {
 }
 
 .function:hover {
-    background-color: #1b858a;
+    background-color: #1b858ab3;
     border: 1px solid #252525;
 }
 
 .function:active,
 .function-selected {
-    background-color: #1f959b;
+    background-color: #20a6acb3;
 }
 
 .btn-selected {
@@ -159,24 +158,51 @@ body:after {
     bottom: 1rem;
     right: 1rem;
     opacity: 0.5;
-    width: 100px;
+    width: 110px;
+    text-align: right;
 }
 
 .credits a {
     font-family: 'JetBrains Mono';
     font-size: 0.8rem;
     font-weight: 500;
-    text-align: right;
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .calculator {
+        width: 350px;
+    }
+}
+
 @media (max-width: 700px) {
+    .calculator {
+        transform: translateY(-10%);
+    }
+
     .credits {
         bottom: 3.5rem;
         right: 0;
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+}
+
+@media (max-height: 540px) {
+    body::after {
+        left: 0;
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .btn {
+        font-size: 5vh;
+    }
+
+    .info {
+        left: 100px;
+        transform: translateX(-50%);
     }
 }
 
@@ -197,26 +223,5 @@ body:after {
 
     .btn {
         font-size: 8vw;
-    }
-}
-
-@media (max-width: 1200px) {
-    .calculator {
-        width: 350px;
-    }
-}
-
-@media (max-height: 540px) {
-    body::after {
-        left: 0;
-        width: 350px;
-    }
-
-    .btn {
-        font-size: 5vh;
-    }
-
-    .info {
-        left: 6.5rem;
     }
 }
