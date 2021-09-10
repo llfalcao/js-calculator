@@ -137,32 +137,21 @@ function updateDisplay(input) {
 }
 
 function operate(sign, x, y) {
+    add = (x, y) => x + y;
+    sub = (x, y) => x - y;
+    mul = (x, y) => x * y;
+    div = (x, y) => x / y;
+
     switch (sign) {
         case 'add':
-            return add(x, y);
+            return this.add(x, y);
         case 'subtract':
-            return subtract(x, y);
+            return this.subtract(x, y);
         case 'multiply':
-            return multiply(x, y);
+            return this.multiply(x, y);
         case 'divide':
-            return divide(x, y);
+            return this.divide(x, y);
         default:
             break;
     }
 }
-
-const add = function (x, y) {
-    return x + y;
-};
-
-const subtract = function (x, y) {
-    return x - y;
-};
-
-const multiply = function (x, y) {
-    return x * y;
-};
-
-const divide = function (x, y) {
-    return x / y;
-};
