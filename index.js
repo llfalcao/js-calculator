@@ -72,7 +72,7 @@ function updateDisplay(input) {
                 return;
             }
 
-            result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
+            result = Math.round(calculate(operator, a, b) * 1e9) / 1e9;
             display.innerText = result;
             a = result;
             b = undefined;
@@ -93,7 +93,7 @@ function updateDisplay(input) {
             }
         }
 
-        result = Math.round(operate(operator, a, b) * 1e9) / 1e9;
+        result = Math.round(calculate(operator, a, b) * 1e9) / 1e9;
         display.innerText = result;
         a = result;
         operandSwitch = true;
@@ -136,7 +136,7 @@ function updateDisplay(input) {
     }
 }
 
-function operate(sign, x, y) {
+function calculate(sign, x, y) {
     add = (x, y) => x + y;
     sub = (x, y) => x - y;
     mul = (x, y) => x * y;
@@ -146,11 +146,11 @@ function operate(sign, x, y) {
         case 'add':
             return this.add(x, y);
         case 'subtract':
-            return this.subtract(x, y);
+            return this.sub(x, y);
         case 'multiply':
-            return this.multiply(x, y);
+            return this.mul(x, y);
         case 'divide':
-            return this.divide(x, y);
+            return this.div(x, y);
         default:
             break;
     }
