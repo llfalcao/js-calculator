@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('.btn');
 let operator, a, b, operandSwitch, decimalPoint;
+let miniDisplay = [];
 // a: 1st operand;
 // b: 2nd operand;
 // operandSwitch: defines when to clear the display for a new number
@@ -66,9 +67,12 @@ function updateDisplay(input) {
         }
         // Chain operations with the operator acting as an 'equals' button
         else if (a !== undefined) {
+            console.log(a);
             b = parseFloat(display.innerText);
             if (operator === 'divide' && b === 0) {
                 window.alert("We don't do that here");
+                operandSwitch = true;
+                console.log(a);
                 return;
             }
 
@@ -89,6 +93,7 @@ function updateDisplay(input) {
             b = parseFloat(display.innerText);
             if (operator === 'divide' && b === 0) {
                 window.alert("We don't do that here");
+                operandSwitch = true;
                 return;
             }
         }
@@ -134,6 +139,21 @@ function updateDisplay(input) {
         operandSwitch = false;
         display.innerText += currentInput;
     }
+
+    // Update upper area of the display containing the current operation
+    if (!operandSwitch && operator === undefined) {
+        miniDisplay[0] = display.innerText;
+    } else {
+        miniDisplay[0] = a.toString();
+        miniDisplay[2] = '';
+    }
+    if (input.classList.contains('operator')) {
+        miniDisplay[1] = input.innerText;
+    }
+    if (a !== undefined && !operandSwitch) {
+        miniDisplay[2] = display.innerText;
+    }
+    document.querySelector('.operation').innerText = miniDisplay.join(' ');
 }
 
 function calculate(sign, x, y) {
