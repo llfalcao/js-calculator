@@ -67,12 +67,10 @@ function updateDisplay(input) {
         }
         // Chain operations with the operator acting as an 'equals' button
         else if (a !== undefined) {
-            console.log(a);
             b = parseFloat(display.innerText);
             if (operator === 'divide' && b === 0) {
                 window.alert("We don't do that here");
                 operandSwitch = true;
-                console.log(a);
                 return;
             }
 
